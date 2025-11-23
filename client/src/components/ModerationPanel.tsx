@@ -85,7 +85,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                         style={{ backgroundColor: 'hsl(var(--color-warning))', color: 'white', flex: 1 }}
                     >
                         <AlertTriangle size={20} />
-                        Запросить изменения
+                        Вернуть на доработку
                     </button>
 
                     <button
@@ -116,7 +116,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                     <div className="card" style={{ width: '500px', padding: '2rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
                             <h2 style={{ fontSize: '1.5rem', fontWeight: '600' }}>
-                                {actionType === 'reject' ? 'Отклонить объявление' : 'Запросить изменения'}
+                                {actionType === 'reject' ? 'Отклонить объявление' : 'Вернуть на доработку'}
                             </h2>
                             <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none' }}>
                                 <X size={24} />

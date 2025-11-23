@@ -1,162 +1,170 @@
-# Internship Test Task for Frontend Intern (Fall 2025 Wave)
-![mockup](mockup.jpg)
+# Тестовое задание для стажёра Frontend (осенняя волна 2025)
+Выполненное отмечено +
+## **Отсебятина**
+В сервер
+  Добавлены имена категорий
+  Добавлен cброс данных для тестов
+  random с seed для тестов
+  Добавлен cors
+  Порт поменян на 3002
+Скриншотные тесты
 
-## Advertisement Management System for Moderation
+![scheme](schema%20(3).jpg)
 
-### Task Description
-Develop a web application for moderating advertisements on the Avito platform. This is a simplified version of the internal system used by moderators to review and manage user ads.
+## **Система управления объявлениями для модерации**
 
-### Business Context
-Thousands of ads are published daily on Avito and must go through moderation before publication. Moderators need a convenient tool for quickly reviewing ads, making decisions, and tracking effectiveness.
+### **Описание задачи**
+Необходимо разработать веб-приложение для модерации объявлений на платформе Авито. Это упрощённая версия внутренней системы, которую используют модераторы для проверки и управления объявлениями пользователей.
 
-### Technical Requirements
+### **Бизнес-контекст**
+Ежедневно на Авито публикуются тысячи объявлений, которые должны пройти модерацию перед публикацией. Модераторам нужен удобный инструмент для быстрой проверки объявлений, принятия решений и отслеживания своей эффективности.
 
-#### Mandatory
-- Node.js v20
-- React v18+
-- react-router-dom for routing
-- Use the provided API located in the `server` folder of this repository
-- Source code must contain a README with launch instructions and justification for optional technology choices
+### **Технические требования**
+#### **Обязательные:**
+- Node.js v20 +
+- React v18+ +
+- react-router-dom для роутинга +
+- Использование готового API, расположенного в папке server этого репозитория +
+- Исходный код решения должен быть выложен с вашего аккаунта на GitHub с readme-файлом, содержащим инструкцию по запуску проекта и обоснование выбора необязательных технологий
 
-#### Optional
-- Any UI component library may be used
-- TypeScript is desirable
-- Any external libraries are allowed, including:
-  - Design system/UI kit (Material UI, Ant Design)
-  - State management (Redux, MobX, Effector)
-  - Linter (ESLint)
+#### **Дополнительные (со звёздочкой):**
+- Разрешено использование любой библиотеки UI-компонентов
+- Желательно использование TypeScript +
+- Использование ИИ разрешено в переработанном виде. При выявлении ИИ при проверке задания на следующих этапах отбора вам необходимо будет пояснить необходимость его использования и ответить на уточняющие вопросы интервьюера
+- Разрешено использование любых внешних библиотек, в том числе:
+  - Дизайн-система/UI-kit (Material-UI, Ant Design)
+  - Стейт-менеджмент (Redux, MobX, Effector)
+  - Линтер (ESLint) +
   - Prettier
-  - Build system (Webpack, Vite)
-  - HTTP client library (React Query, Axios)
-- Ability to run the project in Docker; ideally server and client via docker-compose
-- Cancel/abort requests when navigating between pages
-- Unit test coverage
-- Code comments and documentation
+  - Система сборки (Webpack, Vite +)
+  - Библиотека для работы с асинхронными HTTP-запросами (React Query, Axios)
+- Возможность запустить проект в контейнеризированной docker-среде, ещё лучше — сервер и клиент запускаются при помощи docker compose
+- Прерывание (отмена/прекращение) запросов при переходе со страницы на страницу
+- Покрытие кода юнит-тестами
+- Комментарии к коду и документация
 
-### Functional Requirements
+### **Функциональные требования**
+#### **1. Главная страница — Список объявлений (/list)**
+- Отображение списка объявлений в виде карточек
+- Каждая карточка содержит:
+  - Изображение товара (можно использовать placeholder-изображения) +
+  - Название объявления +
+  - Цена +
+  - Категория +
+  - Дата создания +
+  - Статус (на модерации / одобрено / отклонено) +
+  - Индикатор приоритета (обычный / срочный) +
 
-#### 1. Main Page — Advertisement List (/list)
-- Cards show:
-  - Product image (placeholders allowed)
-  - Title
-  - Price
-  - Category
-  - Creation date
-  - Status (under moderation / approved / rejected)
-  - Priority indicator (normal / urgent)
+**Фильтрация и поиск:**
+- Фильтр по статусу (множественный выбор) +
+- Фильтр по категории +
+- Фильтр по диапазону цен  +
+- Поиск по названию объявления +
+- Сброс всех фильтров +
 
-Filtering and search:
-- Filter by status (multi-select)
-- Filter by category
-- Filter by price range
-- Search by advertisement title
-- Reset all filters
+**Сортировка:**
+- По дате создания (новые/старые) +
+- По цене (возрастание/убывание) +
+- По приоритету +
 
-Sorting:
-- By creation date (newest/oldest)
-- By price (ascending/descending)
-- By priority
+**Пагинация:**
+- По 10 объявлений на страницу +
+- Навигация между страницами +
+- Отображение общего количества объявлений +
 
-Pagination:
-- 10 ads per page
-- Page navigation
-- Show total ad count
+#### **2. Страница детального просмотра объявления (/item/:id)**
+При клике на карточку открывается детальная страница объявления. +
 
-#### 2. Advertisement Detail Page (/item/:id)
-When a card is clicked, open the detail page.
+**Информация об объявлении:**
+- Галерея изображений (минимум 3 изображения) +
+- Полное описание +
+- Характеристики товара (в виде таблицы ключ-значение) +
+- Информация о продавце:
+  - Имя +
+  - Рейтинг +
+  - Количество объявлений
+  - Дата регистрации +
 
-Advertisement info:
-- Image gallery (at least 3 images)
-- Full description
-- Product specs as a key-value table
-- Seller info:
-  - Name
-  - Rating
-  - Number of advertisements
-  - Registration date
+**История модерации:**
+- Список всех действий с объявлением +
+- Кто проверял (имя модератора) +
+- Когда (дата и время) +
+- Какое решение принял +
+- Комментарий (если был) +
 
-Moderation history:
-- List of all actions on the ad
-- Who reviewed (moderator name)
-- When (date/time)
-- Decision made
-- Comment (if any)
+**Панель действий модератора:**
+- Кнопка «Одобрить» (зелёная) +
+- Кнопка «Отклонить» (красная) +
+- Кнопка «Вернуть на доработку» (жёлтая) +
 
-Moderator action panel:
-- Approve (green)
-- Reject (red)
-- Return for revision (yellow)
+**При отклонении:**
+- Обязательное поле для указания причины +
+- Быстрые шаблоны причин: +
+  - Запрещённый товар +
+  - Неверная категория   +
+  - Некорректное описание +
+  - Проблемы с фото +
+  - Подозрение на мошенничество +
+  - Другое (с полем ввода) +
 
-When rejecting:
-- Required field for reason
-- Quick reason templates:
-  - Prohibited item
-  - Incorrect category
-  - Invalid description
-  - Photo issues
-  - Suspicion of fraud
-  - Other (with input field)
+**Навигация:**
+- Кнопка «Назад к списку» +
+- Кнопки «Предыдущее» / «Следующее» объявление (для быстрой модерации) +
 
-Navigation:
-- Back to list
-- Previous / Next advertisement buttons for fast moderation
+#### **3. Страница статистики модератора (/stats)**
 
-#### 3. Moderator Statistics Page (/stats)
+**Общая статистика:**
+- Карточки с метриками:
+  - Всего проверено объявлений (за сегодня/неделю/месяц) +
+  - Процент одобренных +
+  - Процент отклоненных +
+  - Среднее время на проверку одного объявления +
+Графики:
+- График активности по дням за последнюю неделю (столбчатая диаграмма)+
+- Круговая диаграмма распределения решений (одобрено/отклонено/на доработку) +
+- График по категориям проверенных объявлений
 
-General statistics:
-- Metric cards:
-  - Total checked ads (today/week/month)
-  - Percent approved
-  - Percent rejected
-  - Average time to check one ad
+### **Дополнительные функциональные возможности (со звёздочкой)**
+**1. Горячие клавиши:**
+- `A` - одобрить объявление
+- `D` - отклонить объявление
+- `→` - следующее объявление
+- `←` - предыдущее объявление
+- `/` - фокус на поиск
 
-Charts:
-- Activity by day for the last week (bar chart)
-- Decision distribution (approved/rejected/for revision) as a pie chart
-- Ads checked by category
+**2. Bulk-операции:**
+- Чекбоксы для выбора нескольких объявлений
+- Массовое одобрение/отклонение
+- Счетчик выбранных объявлений
 
-### Additional Functional Capabilities (optional, after main scope)
+**3. Продвинутая фильтрация:**
+- Сохранение наборов фильтров
+- URL-синхронизация фильтров (можно поделиться ссылкой)
 
-1. Hotkeys:
-   - `A` — approve
-   - `D` — reject
-   - `→` — next ad
-   - `←` — previous ad
-   - `/` — focus search
+**4. Тёмная тема:**
+- Переключатель темы
+- Сохранение выбора в localStorage
 
-2. Bulk operations:
-   - Checkboxes to select multiple ads
-   - Mass approve/reject
-   - Selected ads counter
+**5. Экспорт данных:**
+- Экспорт статистики в CSV
+- Генерация PDF-отчёта
 
-3. Advanced filtering:
-   - Save filter sets
-   - Sync filters with URL (shareable link)
+**6. Real-time обновления:**
+- Автообновление списка новых объявлений
+- Счётчик новых объявлений
+- Статус объявления
 
-4. Dark theme:
-   - Theme switcher
-   - Persist choice in localStorage
+**7. Анимации:**
+- Плавные переходы между страницами
+- Анимация появления карточек
+- Progress bar для загрузки
 
-5. Data export:
-   - Export statistics to CSV
-   - PDF report generation
+**8. Фильтр по периоду на странице статистики модератора /stats:** +
+- Сегодня
+- Последние 7 дней
+- Последние 30 дней
 
-6. Real-time updates:
-   - Auto-update new ads list
-   - New ads counter
-   - Advertisement status
-
-7. Animations:
-   - Smooth page transitions
-   - Card appearance animation
-   - Loading progress bar
-
-8. Period filter on /stats:
-   - Today
-   - Last 7 days
-   - Last 30 days
-
-### What NOT to Do
-- No auth/registration (assume user is authorized)
-- No real image uploads
-- No integrations with external services
+### **Что НЕ нужно делать**
+- Реализовывать авторизацию/регистрацию (считаем, что пользователь уже авторизован)
+- Реализовывать загрузку реальных изображений
+- Делать интеграцию с внешними сервисами
