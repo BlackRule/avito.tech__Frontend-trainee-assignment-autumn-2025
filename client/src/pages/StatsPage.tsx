@@ -3,6 +3,7 @@ import { api, endpoints } from '../api/api';
 import StatsCard from '../components/StatsCard';
 import { ActivityChart, DecisionsChart } from '../components/Charts';
 import { Loader2, CheckCircle, XCircle, AlertTriangle, Clock, BarChart3 } from 'lucide-react';
+import { Period } from '../types';
 
 const PERIOD_LABELS = {
     today: 'Сегодня',
@@ -17,7 +18,7 @@ const StatsPage = () => {
     const [categories, setCategories] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [period, setPeriod] = useState('week'); // 'today', 'week', 'month'
+    const [period, setPeriod] = useState<Period>('week');
 
     const fetchData = async () => {
         setLoading(true);
