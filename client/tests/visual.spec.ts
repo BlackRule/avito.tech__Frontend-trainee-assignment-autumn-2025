@@ -8,6 +8,7 @@ test.describe('Visual Tests', () => {
 
     test('list page screenshot', async ({ page }) => {
         await page.goto('/list');
+        await page.waitForLoadState('networkidle');
         await page.waitForSelector('.card'); // Wait for ads to load
         await expect(page).toHaveScreenshot('list-page.png', { fullPage: true });
     });
@@ -18,12 +19,14 @@ test.describe('Visual Tests', () => {
         await page.goto('/list');
         await page.waitForSelector('.card');
         await page.getByRole('link', { name: 'Открыть' }).first().click();
+        await page.waitForLoadState('networkidle');
         await page.waitForSelector('h1'); // Wait for title
         await expect(page).toHaveScreenshot('detail-page.png', { fullPage: true });
     });
 
     test('stats page screenshot', async ({ page }) => {
         await page.goto('/stats');
+        await page.waitForLoadState('networkidle');
         await page.waitForSelector('.recharts-wrapper'); // Wait for charts
         await expect(page).toHaveScreenshot('stats-page.png', { fullPage: true });
     });
@@ -35,6 +38,7 @@ test.describe('Visual Tests', () => {
         await page.waitForSelector('h1');
         await page.getByRole('button', { name: 'Отклонить' }).click();
         await page.waitForSelector('text=Отклонить объявление');
+        await page.waitForLoadState('networkidle');
         await expect(page).toHaveScreenshot('detail-page-reject-popup.png', { fullPage: true });
     });
 });

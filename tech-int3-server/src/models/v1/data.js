@@ -20,7 +20,8 @@ const generateMockAds = (count) => {
 
     // Создаем объявления за разные периоды для тестирования фильтрации
     const daysAgo = Math.floor(random() * 60); // Объявления за последние 60 дней
-    const createdAt = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
+    const fixedNow = new Date('2024-01-01T12:00:00Z').getTime();
+    const createdAt = new Date(fixedNow - daysAgo * 24 * 60 * 60 * 1000);
 
     const ad = {
       id: i,
@@ -43,7 +44,7 @@ const generateMockAds = (count) => {
         name: `Продавец ${Math.floor(random() * 100) + 1}`,
         rating: (random() * 5).toFixed(1),
         totalAds: Math.floor(random() * 50) + 1,
-        registeredAt: new Date(Date.now() - Math.floor(random() * 365) * 24 * 60 * 60 * 1000).toISOString()
+        registeredAt: new Date(new Date('2024-01-01T12:00:00Z').getTime() - Math.floor(random() * 365) * 24 * 60 * 60 * 1000).toISOString()
       },
       characteristics: {
         'Состояние': ['Новое', 'Б/у', 'Отличное', 'Хорошее', 'Удовлетворительное'][Math.floor(random() * 5)],
@@ -105,7 +106,7 @@ const generateMockStats = () => {
 
 
   for (let i = 6; i >= 0; i--) {
-    const date = new Date();
+    const date = new Date('2024-01-01T12:00:00Z');
     date.setDate(date.getDate() - i);
 
     stats.activityChart.push({
