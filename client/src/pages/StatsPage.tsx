@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { api, endpoints } from '../api/api';
 import StatsCard from '../components/StatsCard';
-import { ActivityChart, DecisionsChart } from '../components/Charts';
+import { ActivityChart, DecisionsChart, CategoriesChart } from '../components/Charts';
 import { Loader2, CheckCircle, XCircle, AlertTriangle, Clock, BarChart3 } from 'lucide-react';
 import { Period } from '../types';
 
@@ -115,7 +115,7 @@ const StatsPage = () => {
                 />
                 <StatsCard
                     title="Среднее время проверки"
-                    value={`${Math.round(summary.averageReviewTime / 1000 / 60)} мин`}
+                    value={`${Math.round(summary.averageReviewTime / 60)} мин`}
                     subtext="На объявление"
                     icon={Clock}
                     color="220 10% 50%"
@@ -133,6 +133,13 @@ const StatsPage = () => {
                 <div className="card" style={{ padding: '1.5rem' }}>
                     <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1.5rem' }}>Распределение решений</h3>
                     <DecisionsChart data={decisions} />
+                </div>
+            </div>
+
+            <div style={{ marginTop: '1.5rem' }}>
+                <div className="card" style={{ padding: '1.5rem' }}>
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1.5rem' }}>Распределение по категориям</h3>
+                    <CategoriesChart data={categories} />
                 </div>
             </div>
         </div>

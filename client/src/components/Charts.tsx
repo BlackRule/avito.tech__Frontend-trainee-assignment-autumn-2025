@@ -1,5 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import type { ActivityPoint, DecisionsBreakdown } from '../types';
+import type { ActivityPoint, DecisionsBreakdown, CategoriesBreakdown } from '../types';
 
 const THEME_COLORS = {
   approved: '#29a366',
@@ -76,6 +76,46 @@ export const DecisionsChart = ({ data }: DecisionsChartProps) => {
         />
         <Legend />
       </PieChart>
+    </ResponsiveContainer>
+  );
+};
+
+interface CategoriesChartProps {
+  data: CategoriesBreakdown | null;
+}
+
+export const CategoriesChart = ({ data }: CategoriesChartProps) => {
+  const chartData = data
+    ? Object.entries(data).map(([name, value]) => ({ name, value }))
+    : [];
+
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart data={chartData} layout="vertical" margin={{ left: 20 }}>
+        <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="hsl(var(--color-border))" />
+        <XAxis
+          type="number"
+          stroke="hsl(var(--color-text-secondary))"
+          fontSize={12}
+          tickLine={false}
+          axisLine={false}
+        />
+        <YAxis
+          dataKey="name"
+          type="category"
+          stroke="hsl(var(--color-text-secondary))"
+          fontSize={12}
+          tickLine={false}
+          axisLine={false}
+          width={100}
+        />
+        <Tooltip
+          contentStyle={{ backgroundColor: 'hsl(var(--color-surface))', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--color-border))' }}
+          labelStyle={{ color: 'hsl(var(--color-text))', fontWeight: '600', marginBottom: '0.5rem' }}
+          cursor={{ fill: 'hsl(var(--color-surface-hover))' }}
+        />
+        <Bar dataKey="value" name="Количество" fill="hsl(var(--color-primary))" radius={[0, 4, 4, 0]} />
+      </BarChart>
     </ResponsiveContainer>
   );
 };
