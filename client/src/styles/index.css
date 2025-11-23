@@ -9,6 +9,9 @@
   --color-success: 150 60% 40%;
   --color-danger: 0 70% 60%;
   --color-warning: 35 90% 60%;
+  --color-secondary: 250 60% 95%; /* Light purple background for selected items */
+  --color-secondary-foreground: 250 60% 40%; /* Dark purple text for selected items */
+  --color-muted: 220 20% 92%; /* Subtle hover background */
   
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -19,6 +22,28 @@
   --radius-full: 9999px;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: 250 60% 65%; /* Slightly lighter purple for dark mode */
+    --color-primary-hover: 250 60% 55%;
+    --color-background: 220 20% 12%; /* Dark background */
+    --color-surface: 220 15% 18%; /* Slightly lighter dark surface */
+    --color-text: 220 20% 95%; /* Light text */
+    --color-text-secondary: 220 10% 60%; /* Muted light text */
+    --color-border: 220 15% 25%; /* Dark border */
+    --color-success: 150 60% 50%;
+    --color-danger: 0 70% 65%;
+    --color-warning: 35 90% 65%;
+    --color-secondary: 250 60% 25%; /* Dark purple background for selected items */
+    --color-secondary-foreground: 250 60% 85%; /* Light purple text for selected items */
+    --color-muted: 220 15% 22%; /* Subtle hover background in dark mode */
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  }
 }
 
 * {

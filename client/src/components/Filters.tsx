@@ -60,7 +60,9 @@ const Filters = ({ filters, onFilterChange, onReset, categories = [] }: FiltersP
                 borderRadius: 'var(--radius-md)',
                 border: '1px solid hsl(var(--color-border))',
                 fontSize: '1rem',
-                outline: 'none'
+                outline: 'none',
+                backgroundColor: 'hsl(var(--color-surface))',
+                color: 'hsl(var(--color-text))'
               }}
             />
           </div>
@@ -112,7 +114,9 @@ const Filters = ({ filters, onFilterChange, onReset, categories = [] }: FiltersP
                 width: '100%',
                 padding: '0.5rem',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid hsl(var(--color-border))'
+                border: '1px solid hsl(var(--color-border))',
+                backgroundColor: 'hsl(var(--color-surface))',
+                color: 'hsl(var(--color-text))'
               }}
             />
             <input
@@ -140,7 +144,9 @@ const Filters = ({ filters, onFilterChange, onReset, categories = [] }: FiltersP
                 flex: 1,
                 padding: '0.5rem',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid hsl(var(--color-border))'
+                border: '1px solid hsl(var(--color-border))',
+                backgroundColor: 'hsl(var(--color-surface))',
+                color: 'hsl(var(--color-text))'
               }}
             >
               <option value="createdAt">Дата</option>
@@ -153,7 +159,9 @@ const Filters = ({ filters, onFilterChange, onReset, categories = [] }: FiltersP
               style={{
                 padding: '0.5rem',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid hsl(var(--color-border))'
+                border: '1px solid hsl(var(--color-border))',
+                backgroundColor: 'hsl(var(--color-surface))',
+                color: 'hsl(var(--color-text))'
               }}
             >
               <option value="desc">По убыв.</option>

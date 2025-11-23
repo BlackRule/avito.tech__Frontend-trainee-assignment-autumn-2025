@@ -99,7 +99,9 @@ const CategorySelect = ({ value, onChange, categories = [] }: CategorySelectProp
                 padding: '0.25rem 0.5rem',
                 borderRadius: 'var(--radius-sm)',
                 border: '1px solid hsl(var(--color-border))',
-                outline: 'none'
+                outline: 'none',
+                backgroundColor: 'hsl(var(--color-surface))',
+                color: 'hsl(var(--color-text))'
               }}
               autoFocus
             />
