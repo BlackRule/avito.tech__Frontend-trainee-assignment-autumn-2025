@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/api/v1';
+const API_URL = 'http://localhost:3002/api/v1';
 
 export const api = {
     async get(endpoint, params = {}) {
