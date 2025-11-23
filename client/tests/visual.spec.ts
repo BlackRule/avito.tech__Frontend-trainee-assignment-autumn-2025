@@ -1,7 +1,7 @@
 import { test, expect, request } from '@playwright/test';
 
 test.describe('Visual Tests', () => {
-    test.afterAll(async () => {
+    test.beforeEach(async () => {
         const apiContext = await request.newContext();
         await apiContext.post('http://localhost:3002/api/v1/reset');
     });
@@ -17,7 +17,7 @@ test.describe('Visual Tests', () => {
         // Or just click the first one
         await page.goto('/list');
         await page.waitForSelector('.card');
-        await page.getByRole('link', { name: 'Review Ad' }).first().click();
+        await page.getByRole('link', { name: 'Открыть' }).first().click();
         await page.waitForSelector('h1'); // Wait for title
         await expect(page).toHaveScreenshot('detail-page.png', { fullPage: true });
     });
@@ -31,10 +31,10 @@ test.describe('Visual Tests', () => {
     test('detail page reject popup screenshot', async ({ page }) => {
         await page.goto('/list');
         await page.waitForSelector('.card');
-        await page.getByRole('link', { name: 'Review Ad' }).first().click();
+        await page.getByRole('link', { name: 'Открыть' }).first().click();
         await page.waitForSelector('h1');
-        await page.getByRole('button', { name: 'Reject' }).click();
-        await page.waitForSelector('text=Reject Advertisement');
+        await page.getByRole('button', { name: 'Отклонить' }).click();
+        await page.waitForSelector('text=Отклонить объявление');
         await expect(page).toHaveScreenshot('detail-page-reject-popup.png', { fullPage: true });
     });
 });

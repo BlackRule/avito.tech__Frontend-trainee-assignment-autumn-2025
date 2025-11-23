@@ -41,9 +41,16 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:5174',
-    reuseExistingServer: true,
-  },
+  webServer: [
+    {
+      command: 'node ../tech-int3-server/server.js',
+      url: 'http://localhost:3002',
+      reuseExistingServer: true,
+    },
+    {
+      command: 'node ./node_modules/vite/bin/vite.js --host 0.0.0.0 --port 5174 --strictPort',
+      url: 'http://localhost:5174',
+      reuseExistingServer: true,
+    },
+  ],
 });

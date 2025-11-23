@@ -1,11 +1,10 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import ListPage from './pages/ListPage';
 import ItemPage from './pages/ItemPage';
 import StatsPage from './pages/StatsPage';
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -18,6 +17,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

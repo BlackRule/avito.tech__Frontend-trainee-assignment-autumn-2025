@@ -1,7 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-const usePolling = process.env.CHOKIDAR_USEPOLLING === 'true'
+const usePolling = process.env.CHOKIDAR_USEPOLLING === 'true';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,4 +12,4 @@ export default defineConfig({
     strictPort: true,
     ...(usePolling ? { watch: { usePolling: true } } : {}),
   },
-})
+});
