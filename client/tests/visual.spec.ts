@@ -27,4 +27,14 @@ test.describe('Visual Tests', () => {
         await page.waitForSelector('.recharts-wrapper'); // Wait for charts
         await expect(page).toHaveScreenshot('stats-page.png', { fullPage: true });
     });
+
+    test('detail page reject popup screenshot', async ({ page }) => {
+        await page.goto('/list');
+        await page.waitForSelector('.card');
+        await page.getByRole('link', { name: 'Review Ad' }).first().click();
+        await page.waitForSelector('h1');
+        await page.getByRole('button', { name: 'Reject' }).click();
+        await page.waitForSelector('text=Reject Advertisement');
+        await expect(page).toHaveScreenshot('detail-page-reject-popup.png', { fullPage: true });
+    });
 });
