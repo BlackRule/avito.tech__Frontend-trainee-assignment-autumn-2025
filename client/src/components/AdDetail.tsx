@@ -135,6 +135,10 @@ const AdDetail = ({ ad }: AdDetailProps) => {
               <span style={{ fontWeight: '500' }}>{ad.seller.rating}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <span style={{ color: 'hsl(var(--color-text-secondary))' }}>Количество объявлений</span>
+              <span style={{ fontWeight: '500' }}>{ad.seller.totalAds}</span>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: 'hsl(var(--color-text-secondary))' }}>На сайте с</span>
               <span style={{ fontWeight: '500' }}>{new Date(ad.seller.registeredAt).toLocaleDateString('ru-RU')}</span>
             </div>
