@@ -1,44 +1,36 @@
-# Advertisement Management System
+﻿# Система модерации объявлений
 
-This project implements a moderation system for advertisements, consisting of a React frontend and an Express backend.
+React-фронтенд и Express-бэкенд для модерации объявлений.
 
-## 🐳 Running with Docker
+## Запуск через Docker
+- Собрать и запустить оба сервиса (фронтенд через Nginx, бэкенд на Node):
+  ```bash
+  docker-compose up --build
+  ```
+  Используйте `--build`, чтобы подхватить изменения в коде, так как исходники не примонтированы как тома.
+- Приложение: http://localhost:5174, API: http://localhost:3002.
 
-The easiest way to run the application is using Docker Compose.
+### Горячая перезагрузка фронтенда (профиль dev)
+Запустить dev-версию фронтенда, которая монтирует локальный код и держит Vite HMR включенным:
+```bash
+docker-compose up server client-hot
+```
+Сначала остановите обычный сервис `client`, чтобы избежать конфликта порта 5174.
 
-### Prerequisites
-- Docker
-- Docker Compose
+## Ручная настройка
+Бэкенд:
+```bash
+cd tech-int3-server
+npm install
+npm start   # http://localhost:3002
+```
 
-### Steps
-1. Open a terminal in the project root.
-2. Run the following command:
-   ```bash
-   docker-compose up --build
-   ```
-   > **Note**: Since the source code is copied into the images during build (and not mounted as volumes), you **must** use the `--build` flag to see any code changes you make. Running just `docker-compose up` will use the previously built images.
+Фронтенд:
+```bash
+cd client
+npm install
+npm run dev -- --host 0.0.0.0 --port 5174 --strictPort
+```
 
-3. Access the application:
-   - **Frontend**: [http://localhost:5174](http://localhost:5174)
-   - **Backend API**: [http://localhost:3002](http://localhost:3002)
-
-## 🛠 Manual Setup
-
-If you prefer to run the services locally without Docker:
-
-### Backend
-1. Navigate to `tech-int3-server`.
-2. Run `npm install`.
-3. Run `npm start`.
-4. Server runs on port 3002.
-
-### Frontend
-1. Navigate to `client`.
-2. Run `npm install`.
-3. Run `npm run dev`.
-4. Client runs on port 5174.
-
-## 🧪 Testing
-
-To view the Playwright test report (after running tests):
-- **Test Report**: [http://localhost:9323](http://localhost:9323)
+## Тестирование
+После запуска тестов Playwright отчёт будет доступен по адресу http://localhost:9323.

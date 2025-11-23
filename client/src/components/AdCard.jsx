@@ -2,6 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Tag, AlertCircle } from 'lucide-react';
 
+const STATUS_LABELS = {
+    pending: 'На проверке',
+    approved: 'Одобрено',
+    rejected: 'Отклонено',
+    draft: 'Черновик',
+    requestChanges: 'Запрос изменений',
+    urgent: 'Срочно'
+};
+
 const AdCard = ({ ad }) => {
     const formattedPrice = new Intl.NumberFormat('ru-RU', {
         style: 'currency',
@@ -19,17 +28,17 @@ const AdCard = ({ ad }) => {
         <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             <div style={{ position: 'relative', height: '200px', backgroundColor: '#f0f0f0' }}>
                 <img
-                    src={ad.images[0] || 'https://via.placeholder.com/300x200?text=No+Image'}
+                    src={ad.images[0] || 'https://via.placeholder.com/300x200?text=%D0%9D%D0%B5%D1%82+%D1%84%D0%BE%D1%82%D0%BE'}
                     alt={ad.title}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <div style={{ position: 'absolute', top: '0.5rem', right: '0.5rem', display: 'flex', gap: '0.5rem' }}>
                     <span className={`badge badge-${ad.status}`}>
-                        {ad.status}
+                        {STATUS_LABELS[ad.status] || ad.status}
                     </span>
                     {ad.priority === 'urgent' && (
                         <span className="badge badge-urgent">
-                            URGENT
+                            Срочно
                         </span>
                     )}
                 </div>
@@ -57,7 +66,7 @@ const AdCard = ({ ad }) => {
                 </div>
 
                 <Link to={`/item/${ad.id}`} className="btn btn-outline" style={{ marginTop: '1rem', width: '100%' }}>
-                    Review Ad
+                    Открыть
                 </Link>
             </div>
         </div>

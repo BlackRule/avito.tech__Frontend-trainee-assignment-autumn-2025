@@ -37,9 +37,9 @@ export const ActivityChart = ({ data }) => {
                     labelStyle={{ color: 'hsl(var(--color-text))', fontWeight: '600', marginBottom: '0.5rem' }}
                 />
                 <Legend />
-                <Bar dataKey="approved" name="Approved" fill={THEME_COLORS.approved} radius={[4, 4, 0, 0]} stackId="a" />
-                <Bar dataKey="rejected" name="Rejected" fill={THEME_COLORS.rejected} radius={[4, 4, 0, 0]} stackId="a" />
-                <Bar dataKey="requestChanges" name="Changes Requested" fill={THEME_COLORS.requestChanges} radius={[4, 4, 0, 0]} stackId="a" />
+                <Bar dataKey="approved" name="Одобрено" fill={THEME_COLORS.approved} radius={[4, 4, 0, 0]} stackId="a" />
+                <Bar dataKey="rejected" name="Отклонено" fill={THEME_COLORS.rejected} radius={[4, 4, 0, 0]} stackId="a" />
+                <Bar dataKey="requestChanges" name="Запрошены изменения" fill={THEME_COLORS.requestChanges} radius={[4, 4, 0, 0]} stackId="a" />
             </BarChart>
         </ResponsiveContainer>
     );
@@ -49,9 +49,9 @@ export const DecisionsChart = ({ data }) => {
     // Data comes as object { approved: 10, rejected: 5, requestChanges: 2 }
     // Need to transform for PieChart
     const chartData = [
-        { name: 'Approved', value: data.approved },
-        { name: 'Rejected', value: data.rejected },
-        { name: 'Changes Requested', value: data.requestChanges }
+        { name: 'Одобрено', value: data.approved },
+        { name: 'Отклонено', value: data.rejected },
+        { name: 'Запрошены изменения', value: data.requestChanges }
     ];
 
     return (

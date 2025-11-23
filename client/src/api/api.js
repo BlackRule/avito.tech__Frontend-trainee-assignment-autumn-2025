@@ -50,6 +50,7 @@ export const endpoints = {
         decisions: '/stats/chart/decisions',
         categories: '/stats/chart/categories',
     },
+    categories: '/categories',
     moderators: {
         me: '/moderators/me',
     }

@@ -42,7 +42,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, totalItems }) => {
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2rem', padding: '1rem 0' }}>
             <div style={{ color: 'hsl(var(--color-text-secondary))', fontSize: '0.875rem' }}>
-                Total items: {totalItems}
+                Всего {totalItems} объявлений
             </div>
 
             <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center' }}>

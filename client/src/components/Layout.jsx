@@ -32,7 +32,7 @@ const Layout = () => {
                     }}>
                         A
                     </div>
-                    <h1 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'hsl(var(--color-text))' }}>Avito Mod</h1>
+                    <h1 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'hsl(var(--color-text))' }}>Avito Мод</h1>
                 </div>
 
                 <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -42,7 +42,7 @@ const Layout = () => {
                         style={{ justifyContent: 'flex-start', border: 'none', background: ({ isActive }) => isActive ? '' : 'transparent' }}
                     >
                         <List size={20} />
-                        Ads List
+                        Список объявлений
                     </NavLink>
                     <NavLink
                         to="/stats"
@@ -50,13 +50,13 @@ const Layout = () => {
                         style={{ justifyContent: 'flex-start', border: 'none', background: ({ isActive }) => isActive ? '' : 'transparent' }}
                     >
                         <BarChart3 size={20} />
-                        Statistics
+                        Статистика
                     </NavLink>
                 </nav>
 
                 <div style={{ marginTop: 'auto', padding: '1rem', backgroundColor: 'hsl(var(--color-background))', borderRadius: 'var(--radius-md)' }}>
-                    <p style={{ fontSize: '0.875rem', color: 'hsl(var(--color-text-secondary))' }}>Logged in as</p>
-                    <p style={{ fontWeight: '600' }}>Moderator</p>
+                    <p style={{ fontSize: '0.875rem', color: 'hsl(var(--color-text-secondary))' }}>Вы вошли как</p>
+                    <p style={{ fontWeight: '600' }}>Модератор</p>
                 </div>
             </aside>
 

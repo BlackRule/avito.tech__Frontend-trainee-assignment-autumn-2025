@@ -3,10 +3,10 @@ import { CheckCircle, XCircle, AlertTriangle, X } from 'lucide-react';
 import { api, endpoints } from '../api/api';
 
 const REASONS = [
-    'Запрещенный товар',
-    'Неверная категория',
-    'Некорректное описание',
-    'Проблемы с фото',
+    'Нарушение правил площадки',
+    'Недостаточно информации о товаре',
+    'Неверно указана категория',
+    'Нарушение авторских прав',
     'Подозрение на мошенничество',
     'Другое'
 ];
@@ -20,7 +20,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
     const [error, setError] = useState(null);
 
     const handleApprove = async () => {
-        if (!window.confirm('Are you sure you want to approve this ad?')) return;
+        if (!window.confirm('Вы уверены, что хотите одобрить это объявление?')) return;
         setLoading(true);
         setError(null);
         try {
@@ -63,7 +63,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
         <>
             <div className="card" style={{ padding: '1.5rem', position: 'sticky', bottom: '2rem', zIndex: 10, border: '2px solid hsl(var(--color-primary))' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h3 style={{ fontSize: '1.125rem', fontWeight: '600' }}>Moderation Actions</h3>
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: '600' }}>Действия модератора</h3>
                     {error && <span style={{ color: 'hsl(var(--color-danger))', fontSize: '0.875rem' }}>{error}</span>}
                 </div>
 
@@ -75,7 +75,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                         style={{ backgroundColor: 'hsl(var(--color-success))', color: 'white', flex: 1 }}
                     >
                         <CheckCircle size={20} />
-                        Approve
+                        Одобрить
                     </button>
 
                     <button
@@ -85,7 +85,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                         style={{ backgroundColor: 'hsl(var(--color-warning))', color: 'white', flex: 1 }}
                     >
                         <AlertTriangle size={20} />
-                        Request Changes
+                        Запросить изменения
                     </button>
 
                     <button
@@ -95,7 +95,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                         style={{ backgroundColor: 'hsl(var(--color-danger))', color: 'white', flex: 1 }}
                     >
                         <XCircle size={20} />
-                        Reject
+                        Отклонить
                     </button>
                 </div>
             </div>
@@ -116,7 +116,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                     <div className="card" style={{ width: '500px', padding: '2rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
                             <h2 style={{ fontSize: '1.5rem', fontWeight: '600' }}>
-                                {actionType === 'reject' ? 'Reject Advertisement' : 'Request Changes'}
+                                {actionType === 'reject' ? 'Отклонить объявление' : 'Запросить изменения'}
                             </h2>
                             <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none' }}>
                                 <X size={24} />
@@ -125,7 +125,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
 
                         <form onSubmit={handleSubmit}>
                             <div style={{ marginBottom: '1.5rem' }}>
-                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Reason</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Причина</label>
                                 <select
                                     value={reason}
                                     onChange={(e) => setReason(e.target.value)}
@@ -136,7 +136,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                             </div>
 
                             <div style={{ marginBottom: '1.5rem' }}>
-                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Comment (Optional)</label>
+                                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500' }}>Комментарий (необязательно)</label>
                                 <textarea
                                     value={comment}
                                     onChange={(e) => setComment(e.target.value)}
@@ -155,7 +155,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                                     onClick={() => setShowModal(false)}
                                     className="btn btn-outline"
                                 >
-                                    Cancel
+                                    Отмена
                                 </button>
                                 <button
                                     type="submit"
@@ -166,7 +166,7 @@ const ModerationPanel = ({ adId, onActionComplete }) => {
                                         color: 'white'
                                     }}
                                 >
-                                    {loading ? 'Processing...' : 'Confirm'}
+                                    {loading ? 'Обработка...' : 'Подтвердить'}
                                 </button>
                             </div>
                         </form>

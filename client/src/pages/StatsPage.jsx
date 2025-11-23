@@ -4,6 +4,12 @@ import StatsCard from '../components/StatsCard';
 import { ActivityChart, DecisionsChart } from '../components/Charts';
 import { Loader2, CheckCircle, XCircle, AlertTriangle, Clock, BarChart3 } from 'lucide-react';
 
+const PERIOD_LABELS = {
+    today: 'Сегодня',
+    week: 'Неделя',
+    month: 'Месяц'
+};
+
 const StatsPage = () => {
     const [summary, setSummary] = useState(null);
     const [activity, setActivity] = useState([]);
@@ -52,7 +58,7 @@ const StatsPage = () => {
     if (error) {
         return (
             <div style={{ padding: '2rem', color: 'hsl(var(--color-danger))' }}>
-                Error: {error}
+                Ошибка: {error}
             </div>
         );
     }
@@ -60,7 +66,7 @@ const StatsPage = () => {
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h1 style={{ fontSize: '2rem', fontWeight: '700' }}>Statistics</h1>
+                <h1 style={{ fontSize: '2rem', fontWeight: '700' }}>Статистика</h1>
 
                 <div style={{ display: 'flex', backgroundColor: 'hsl(var(--color-surface))', padding: '0.25rem', borderRadius: 'var(--radius-md)', border: '1px solid hsl(var(--color-border))' }}>
                     {['today', 'week', 'month'].map(p => (
@@ -77,7 +83,7 @@ const StatsPage = () => {
                                 fontWeight: '500'
                             }}
                         >
-                            {p}
+                            {PERIOD_LABELS[p]}
                         </button>
                     ))}
                 </div>
@@ -86,30 +92,30 @@ const StatsPage = () => {
             {/* Summary Cards */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
                 <StatsCard
-                    title="Total Reviewed"
+                    title="Всего проверено"
                     value={summary.totalReviewed}
-                    subtext="In selected period"
+                    subtext="За выбранный период"
                     icon={BarChart3}
                     color="250 60% 60%"
                 />
                 <StatsCard
-                    title="Approval Rate"
+                    title="Доля одобрений"
                     value={`${Math.round(summary.approvedPercentage)}%`}
-                    subtext="Of total decisions"
+                    subtext="От всех решений"
                     icon={CheckCircle}
                     color="150 60% 40%"
                 />
                 <StatsCard
-                    title="Rejection Rate"
+                    title="Доля отклонений"
                     value={`${Math.round(summary.rejectedPercentage)}%`}
-                    subtext="Of total decisions"
+                    subtext="От всех решений"
                     icon={XCircle}
                     color="0 70% 60%"
                 />
                 <StatsCard
-                    title="Avg Review Time"
-                    value={`${Math.round(summary.averageReviewTime / 1000 / 60)}m`}
-                    subtext="Per advertisement"
+                    title="Среднее время проверки"
+                    value={`${Math.round(summary.averageReviewTime / 1000 / 60)} мин`}
+                    subtext="На объявление"
                     icon={Clock}
                     color="220 10% 50%"
                 />
@@ -118,13 +124,13 @@ const StatsPage = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.5rem' }}>
                 {/* Activity Chart */}
                 <div className="card" style={{ padding: '1.5rem' }}>
-                    <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1.5rem' }}>Moderation Activity</h3>
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1.5rem' }}>Активность модерации</h3>
                     <ActivityChart data={activity} />
                 </div>
 
                 {/* Decisions Chart */}
                 <div className="card" style={{ padding: '1.5rem' }}>
-                    <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1.5rem' }}>Decisions Distribution</h3>
+                    <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1.5rem' }}>Распределение решений</h3>
                     <DecisionsChart data={decisions} />
                 </div>
             </div>

@@ -34,14 +34,7 @@ const ItemPage = () => {
     };
 
     const handleNext = () => {
-        // Logic to find next ad ID would typically come from the list context or API
-        // For simplicity, we'll just increment ID, but in reality we'd need a list or API support
-        // The requirements say "Previous / Next advertisement buttons (for quick moderation)"
-        // Assuming sequential IDs for now or we'd need to fetch the list to know the order.
-        // Let's just try incrementing/decrementing for prototype, or better, fetch list and find index.
-        // Fetching list is expensive. Let's assume sequential for now or just leave it as simple ID navigation.
-        // A better approach for a real app: pass current list IDs in state or context.
-        // I'll implement simple ID navigation +1/-1 for now as a fallback.
+        // In the future next ad will be fetched from API
         navigate(`/item/${parseInt(id) + 1}`);
     };
 
@@ -62,8 +55,8 @@ const ItemPage = () => {
     if (error) {
         return (
             <div style={{ padding: '2rem', textAlign: 'center' }}>
-                <div style={{ color: 'hsl(var(--color-danger))', marginBottom: '1rem' }}>Error: {error}</div>
-                <Link to="/list" className="btn btn-primary">Back to List</Link>
+                <div style={{ color: 'hsl(var(--color-danger))', marginBottom: '1rem' }}>Ошибка: {error}</div>
+                <Link to="/list" className="btn btn-primary">Вернуться к списку</Link>
             </div>
         );
     }
@@ -72,27 +65,28 @@ const ItemPage = () => {
 
     return (
         <div style={{ paddingBottom: '100px' }}>
+
+
+            <AdDetail ad={ad} />
+
+            <ModerationPanel adId={ad.id} onActionComplete={handleActionComplete} />
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <Link to="/list" className="btn btn-outline">
                     <ArrowLeft size={20} />
-                    Back to List
+                    К списку
                 </Link>
 
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <button onClick={handlePrev} className="btn btn-outline" disabled={parseInt(id) <= 1}>
                         <ChevronLeft size={20} />
-                        Previous
+                        Предыдущее
                     </button>
                     <button onClick={handleNext} className="btn btn-outline">
-                        Next
+                        Следующее
                         <ChevronRight size={20} />
                     </button>
                 </div>
             </div>
-
-            <AdDetail ad={ad} />
-
-            <ModerationPanel adId={ad.id} onActionComplete={handleActionComplete} />
         </div>
     );
 };

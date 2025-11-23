@@ -7,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 
 const ListPage = () => {
     const [ads, setAds] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [filters, setFilters] = useState({
@@ -38,31 +39,6 @@ const ListPage = () => {
                 }
             });
 
-            // Handle status array specifically if needed by API, but api.js handles it if we pass it correctly.
-            // The API expects multiple 'status' query params if array. api.js implementation:
-            // url.searchParams.append(key, params[key]); -> this appends one value.
-            // We need to fix api.js to handle arrays or handle it here.
-            // Let's check api.js again.
-            // api.js: 
-            // Object.keys(params).forEach(key => {
-            //   if (params[key] !== undefined && params[key] !== null && params[key] !== '') {
-            //        url.searchParams.append(key, params[key]);
-            //   }
-            // });
-            // This will append the array as a comma separated string or similar depending on toString implementation.
-            // Standard URLSearchParams appends array as comma separated string usually? No, it converts to string.
-            // We should probably handle arrays in api.js or here.
-            // Let's assume for now we need to pass multiple keys for status if the API expects it, OR the API expects comma separated.
-            // The schema says:
-            // - name: status
-            //   in: query
-            //   schema:
-            //     type: array
-            //     items: type: string
-            // Usually this means ?status=pending&status=approved
-
-            // I'll need to fix api.js to handle arrays correctly. 
-            // For now, I'll proceed with ListPage and then fix api.js.
 
             const data = await api.get(endpoints.ads.list, params);
             setAds(data.ads);
@@ -74,9 +50,22 @@ const ListPage = () => {
         }
     };
 
+    const fetchCategories = async () => {
+        try {
+            const data = await api.get(endpoints.categories);
+            setCategories(data);
+        } catch (err) {
+            console.error('Failed to fetch categories:', err);
+        }
+    };
+
     useEffect(() => {
         fetchAds();
     }, [filters]);
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
 
     const handleFilterChange = (newFilters) => {
         setFilters(prev => ({ ...prev, ...newFilters, page: 1 }));
@@ -103,17 +92,18 @@ const ListPage = () => {
 
     return (
         <div>
-            <h1 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '2rem' }}>Advertisements</h1>
+            <h1 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '2rem' }}>Объявления</h1>
 
             <Filters
                 filters={filters}
                 onFilterChange={handleFilterChange}
                 onReset={handleReset}
+                categories={categories}
             />
 
             {error && (
                 <div style={{ padding: '1rem', backgroundColor: 'hsl(var(--color-danger) / 0.1)', color: 'hsl(var(--color-danger))', borderRadius: 'var(--radius-md)', marginBottom: '1rem' }}>
-                    Error: {error}
+                    Ошибка: {error}
                 </div>
             )}
 
@@ -125,7 +115,7 @@ const ListPage = () => {
                 <>
                     {ads.length === 0 ? (
                         <div style={{ textAlign: 'center', padding: '4rem', color: 'hsl(var(--color-text-secondary))' }}>
-                            No advertisements found.
+                            Объявления не найдены.
                         </div>
                     ) : (
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>

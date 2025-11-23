@@ -1,12 +1,12 @@
-// Simple seeded random number generator
 let seed = 12345;
 const random = () => {
   const x = Math.sin(seed++) * 10000;
   return x - Math.floor(x);
 };
 
+const categories = ['Электроника', 'Недвижимость', 'Транспорт', 'Работа', 'Услуги', 'Животные', 'Мода', 'Детское'];
+
 const generateMockAds = (count) => {
-  const categories = ['Электроника', 'Недвижимость', 'Транспорт', 'Работа', 'Услуги', 'Животные', 'Мода', 'Детское'];
   const statuses = ['pending', 'approved', 'rejected'];
   const priorities = ['normal', 'urgent'];
   const rejectionReasons = ['Запрещенный товар', 'Неверная категория', 'Некорректное описание', 'Проблемы с фото', 'Подозрение на мошенничество', 'Другое'];
@@ -102,7 +102,7 @@ const generateMockStats = () => {
     categoriesChart: {}
   };
 
-  const categories = ['Электроника', 'Недвижимость', 'Транспорт', 'Работа', 'Услуги', 'Животные', 'Мода', 'Детское'];
+
 
   for (let i = 6; i >= 0; i--) {
     const date = new Date();
@@ -142,17 +142,17 @@ const mockModerator = {
 let dataStore = {
   ads: [],
   stats: {},
-  moderator: {}
+  moderator: {},
+  categories
 };
 
 const resetData = () => {
-  seed = 12345; // Reset seed
+  seed = 12345;
   dataStore.ads = generateMockAds(150);
   dataStore.stats = generateMockStats();
   dataStore.moderator = mockModerator;
 };
 
-// Initialize data
 resetData();
 
 dataStore.resetData = resetData;
