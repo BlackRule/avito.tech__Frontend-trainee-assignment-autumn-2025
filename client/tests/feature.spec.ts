@@ -1,6 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, request } from '@playwright/test';
 
 test.describe('Advertisement Management System', () => {
+    test.afterAll(async () => {
+        const apiContext = await request.newContext();
+        await apiContext.post('http://localhost:3002/api/v1/reset');
+    });
+
     test.beforeEach(async ({ page }) => {
         await page.goto('/');
     });

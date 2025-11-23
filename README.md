@@ -37,3 +37,8 @@ If you prefer to run the services locally without Docker:
 2. Run `npm install`.
 3. Run `npm run dev`.
 4. Client runs on port 5174.
+
+## 🧪 Testing
+
+To view the Playwright test report (after running tests):
+- **Test Report**: [http://localhost:9323](http://localhost:9323)
